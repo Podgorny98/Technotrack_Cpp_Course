@@ -1,3 +1,5 @@
+#ifndef ARRAY_HPP
+#define ARRAY_HPP
 template <typename DataT>
 class Array {
 private:
@@ -6,8 +8,8 @@ private:
 public:
     Array(void){}                                               ////  EXPLICIT ???
     Array(size_t size);
-    Array(const Array& that);      // copy constructor
-//    Array(Array&&that);           // move constructor
+    Array(const Array& that);
+//    Array(Array&&that);
     ~Array(void);
     DataT& operator[](int pos);
     Array& operator=(Array that);
@@ -24,14 +26,8 @@ private:
         uint8_t* byte_ = nullptr;
         int BitNum_ = 0;
         Proxy(void) {}
-        Proxy(uint8_t* ArrayByte, int BitNum) :             ///   To Cpp
-            byte_(ArrayByte),
-            BitNum_(BitNum)
-        {}
-        ~Proxy(void) {
-            byte_ = nullptr;
-            BitNum_ = 0;
-        }
+        Proxy(uint8_t* ArrayByte, int BitNum);
+        ~Proxy(void);
         operator bool(void);
         void operator=(bool val);
     };
@@ -41,7 +37,7 @@ private:
 public:
     Array(void){}
     Array(size_t size);
-    Array(const Array& that);      // copy constructor
+    Array(const Array& that);
     ~Array(void);
     Proxy operator[](int pos);
     Array& operator=(Array that);
@@ -49,21 +45,9 @@ public:
     void Print(void) const;
     void Dump(void) const;
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
+//=========================================================
 enum ARRAY_EXC {
     WRONG_POS,
     DIFF_ARR_SIZE
 };
-
+#endif
